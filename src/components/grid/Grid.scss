@@ -1,0 +1,40 @@
+@import '../../assets/scss/core/project';
+
+#instagram {
+	width: 100%;
+	@include flexbox(row, wrap, center, space-between);
+
+	.image {
+		display: inline-block;
+		width: 25%;
+		padding-bottom: 23.5%;
+		background-size: cover;
+		background-position: 50%;
+		margin: $pad/2;
+		overflow: hidden;
+		position: relative;
+
+		&:after {
+			display: none;
+		}
+	}
+
+	&__placeholder {
+		position: relative;
+		background-image: url("http://placehold.it/500x500");
+        display: inline-block;
+        width: 23.5%;
+        padding-bottom: 23.5%;
+        background-size: cover;
+        background-position: 50%;
+		overflow: hidden;
+	}
+}
+
+.caption {
+	display: none;
+}
+
+.likes {
+	opacity: 0;
+}
