@@ -6,7 +6,8 @@ class Grid extends React.Component {
         return (
             <section className="grid">
                 <div id="instagram" data-userid="" data-limit=""></div>
-                <a href="#!" className="instagram__loadButton js-instagram__loadButton">Load More</a>
+                <button onClick={activateLasers}>Load More</button>
+                // <a href="#!" className="instagram__loadButton js-instagram__loadButton">Load More</a>
             </section>
         );
     }
