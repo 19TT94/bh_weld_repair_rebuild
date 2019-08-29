@@ -10,12 +10,18 @@
 		padding-bottom: 23.5%;
 		background-size: cover;
 		background-position: 50%;
-		margin: $pad/2;
+		margin: $pad;
 		overflow: hidden;
 		position: relative;
+		box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
 
 		&:after {
 			display: none;
+		}
+
+		&:hover {
+			transform: scale(1.02);
+			transition: all ease-in-out 0.5s;
 		}
 	}
 
