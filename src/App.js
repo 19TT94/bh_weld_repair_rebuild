@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
-import Grid from './components/grid/Grid.js';
-import Form from './components/form/Form.js';
+import Grid from './components/Grid.js';
+import Form from './components/Form.js';
 import styled from 'styled-components';
 
 function App() {
@@ -118,6 +118,7 @@ const Footer = styled.div`
     width: 100%;
     padding: 20px;
     color: #fff;
+    font-size: 10px;
 `;
 
 export default App;
