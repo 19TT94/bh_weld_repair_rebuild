@@ -25,7 +25,7 @@ class Form extends React.Component {
 
     render() {
         return (
-            <FormWrapper netlify>
+            <FormWrapper>
                 <Title>Get in touch.</Title>
 
                 <Input
@@ -50,7 +50,7 @@ class Form extends React.Component {
                     placeholder="Message" />
 
 
-                <Submit type="submit">Submit</Submit>
+                <Submit type="button" onClick={(e) => this.submitInquiry(e)}>Submit</Submit>
             </FormWrapper>
         );
     }
@@ -68,15 +68,14 @@ class Form extends React.Component {
     }
 
     submitInquiry(e) {
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "inquiries", ...this.state })
-      })
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({ "form-name": "inquiries", ...this.state })
+        })
         .then(() => alert("Success!"))
         .catch(error => alert(error));
-
-      e.preventDefault();
+        e.preventDefault();
     };
 }
 
