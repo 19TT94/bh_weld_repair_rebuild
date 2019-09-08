@@ -18,8 +18,10 @@ class Form extends React.Component {
 
     render() {
         return (
-            <FormWrapper name="inquiries" method="POST" data-netlify="true">
+            <FormWrapper name="inquiries" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                 <Title>Get in touch.</Title>
+
+                <input type="hidden" name="inquiries" value="inquiries" />
 
                 <Input
                     name="name"
