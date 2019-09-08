@@ -2,6 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Mail from './resources/mail.js';
 
+const encode = (data) => {
+    return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+  }
+
 class Form extends React.Component {
     constructor(props) {
         super(props);
@@ -14,14 +20,13 @@ class Form extends React.Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleMessageChange = this.handleMessageChange.bind(this);
+        this.submitInquiry = this.submitInquiry.bind(this);
     }
 
     render() {
         return (
-            <FormWrapper name="inquiries" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <FormWrapper netlify>
                 <Title>Get in touch.</Title>
-
-                <input type="hidden" name="inquiries" value="inquiries" />
 
                 <Input
                     name="name"
@@ -61,6 +66,18 @@ class Form extends React.Component {
     handleMessageChange(e) {
         this.setState({message: e.target.value});
     }
+
+    submitInquiry(e) {
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "inquiries", ...this.state })
+      })
+        .then(() => alert("Success!"))
+        .catch(error => alert(error));
+
+      e.preventDefault();
+    };
 }
 
 const FormWrapper = styled.form`
