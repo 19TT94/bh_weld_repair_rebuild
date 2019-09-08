@@ -19,7 +19,6 @@ class Grid extends React.Component {
         // Data Binding
         this.jsInstagram = this.jsInstagram.bind(this);
         this.getJSONP = this.getJSONP.bind(this);
-        this.loadMore = this.loadMore.bind(this);
     }
 
     render() {
@@ -72,10 +71,6 @@ class Grid extends React.Component {
 
         script.src = url.replace('callback=?', 'callback=' + ud);
         head.appendChild(script);
-    }
-
-    loadMore() {
-        console.log("hi");
     }
 }
 
