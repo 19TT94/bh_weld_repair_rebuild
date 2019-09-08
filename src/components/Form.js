@@ -19,7 +19,7 @@ class Form extends React.Component {
 
     render() {
         return (
-            <FormWrapper netlify>
+            <FormWrapper method="POST" data-netlify="true">
                 <Title>Get in touch.</Title>
 
                 <Input
