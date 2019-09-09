@@ -103,6 +103,7 @@ const Image = styled.div`
     }
 
     &:hover {
+        cursor: pointer;
         transform: scale(1.02);
         transition: all ease-in-out 0.5s;
     }

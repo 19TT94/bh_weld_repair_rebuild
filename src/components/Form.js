@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Mail from './resources/mail.js';
 
+const axios = require('axios');
+
 const encode = (data) => {
     return Object.keys(data)
         .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -68,14 +70,23 @@ class Form extends React.Component {
     }
 
     submitInquiry(e) {
-        fetch("/", {
-            method: "POST",
+        // fetch("/", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        //     body: encode({ "form-name": "inquiries", ...this.state })
+        // })
+        // .then(() => alert("Success!"))
+        // .catch(error => alert(error));
+        // e.preventDefault();
+
+        axios({
+            method: 'post',
+            url: '/',
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode({ "form-name": "inquiries", ...this.state })
+            data: encode({ "form-name": "inquiries", ...this.state })
         })
         .then(() => alert("Success!"))
         .catch(error => alert(error));
-        e.preventDefault();
     };
 }
 
