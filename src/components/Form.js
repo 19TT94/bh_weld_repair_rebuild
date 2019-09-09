@@ -27,10 +27,8 @@ class Form extends React.Component {
 
     render() {
         return (
-            <FormWrapper onSubmit={(e) => this.handleSubmit(e)} netlify="true">
+            <FormWrapper onSubmit={(e) => this.submitInquiry(e)} name="inquiries" netlify="true" netlify-honeypot="bot-field">
                 <Title>Get in touch.</Title>
-
-                <Input type="hidden" name="inquiries" value="inquiries" />
 
                 <Input
                     name="name"
@@ -71,28 +69,20 @@ class Form extends React.Component {
         this.setState({message: e.target.value});
     }
 
-    submitInquiry(e) {
-        axios({
-            method: 'post',
-            url: '/',
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            data: encode({ "form-name": "inquiries", ...this.state })
-        })
-        .then(() => alert("Success!"))
-        .catch(error => alert(error));
+    async submitInquiry(e) {
+        try {
+            await axios.post('/', encode({
+                'form-name': 'inquiries', ...this.state }), {
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            })
+            // this.setState({ submitted: true })
+        } catch (err) {
+            window.alert(
+                'There was a problem submitting your form! Try again or reload the page :)',
+            )
+            // this.setState({ submitted: true })
+        }
         e.preventDefault();
-    }
-
-    handleSubmit = e => {
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "contact", ...this.state })
-      })
-        .then(() => alert("Success!"))
-        .catch(error => alert(error));
-
-      e.preventDefault();
     }
 }
 
