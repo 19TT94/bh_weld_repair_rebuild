@@ -37,7 +37,11 @@ const AppWrapper = styled.div`
 
 const Image = styled.img`
     margin-top: 50px;
-    width: 30%;
+    width: 50%;
+
+    @media screen and (min-width: 767px) {
+        width: 30%;
+    }
 `;
 
 const Banner = styled.div`
@@ -50,15 +54,22 @@ const Banner = styled.div`
     &:before {
         content: '';
         position: absolute;
-        top: -10px;
-        left: 40px;
-        width: 300px;
-        height: 300px;
+        top: 10px;
+        left: 10px;
+        width: 200px;
+        height: 200px;
         background: #A85751;
         border-radius: 50%;
         margin: 10px;
         box-shadow: 10px 8px 10px rgba(0,0,0,0.5);
         z-index: 2;
+
+        @media screen and (min-width: 767px) {
+            top: -10px;
+            left: 40px;
+            width: 300px;
+            height: 300px;
+        }
     }
 
     &:after {
@@ -77,11 +88,16 @@ const Banner = styled.div`
 `;
 
 const Bike = styled.img`
-    width: 25%;
+    width: 50%;
     position: absolute;
-    top: 20%;
+    top: 15%;
     right: 0;
     z-index: 4;
+
+    @media screen and (min-width: 767px) {
+        width: 25%;
+        top: 20%;
+    }
 `;
 
 const Bar = styled.div`

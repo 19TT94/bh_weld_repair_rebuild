@@ -27,8 +27,10 @@ class Form extends React.Component {
 
     render() {
         return (
-            <FormWrapper>
+            <FormWrapper onSubmit={(e) => this.submitInquiry(e)}>
                 <Title>Get in touch.</Title>
+
+                <Input type="hidden" name="form-name" value="inquiries" />
 
                 <Input
                     name="name"
@@ -52,7 +54,7 @@ class Form extends React.Component {
                     placeholder="Message" />
 
 
-                <Submit type="button" onClick={(e) => this.submitInquiry(e)}>Submit</Submit>
+                <Submit type="submit">Submit</Submit>
             </FormWrapper>
         );
     }
@@ -70,15 +72,6 @@ class Form extends React.Component {
     }
 
     submitInquiry(e) {
-        // fetch("/", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        //     body: encode({ "form-name": "inquiries", ...this.state })
-        // })
-        // .then(() => alert("Success!"))
-        // .catch(error => alert(error));
-        // e.preventDefault();
-
         axios({
             method: 'post',
             url: '/',
@@ -87,7 +80,7 @@ class Form extends React.Component {
         })
         .then(() => alert("Success!"))
         .catch(error => alert(error));
-    };
+    }
 }
 
 const FormWrapper = styled.form`
@@ -107,15 +100,23 @@ const Title = styled.h1`
 `;
 
 const Input = styled.input`
-    width: 50%;
+    width: 90%;
     min-height: 25px;
     margin: 10px 10px 5px;
+
+    @media screen and (min-width: 767px) {
+        width: 50%;
+    }
 `;
 
 const Blob = styled.textarea`
-    width: 50%;
+    width: 90%;
     min-height: 50px;
     margin: 10px 10px 5px;
+
+    @media screen and (min-width: 767px) {
+        width: 50%;
+    }
 `;
 
 const Submit = styled.button`

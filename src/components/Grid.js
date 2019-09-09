@@ -84,19 +84,27 @@ const GridWrapper = styled.section`
 `;
 
 const Item = styled.div`
-    width: 33.33%;
+    width: 50%;
     padding: 10px;
+
+    @media screen and (min-width: 767px) {
+        width: 33.33%;
+    }
 `;
 
 const Image = styled.div`
     display: inline-block;
     width: 100%;
-    height: 200px;
+    height: 150px;
     overflow: hidden;
     position: relative;
     background-size: cover;
     background-position: center;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+
+    @media screen and (min-width: 767px) {
+        height: 200px;
+    }
 
     &:after {
         display: none;
