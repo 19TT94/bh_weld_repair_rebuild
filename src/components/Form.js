@@ -27,7 +27,7 @@ class Form extends React.Component {
 
     render() {
         return (
-            <FormWrapper onSubmit={(e) => this.submitInquiry(e)}>
+            <FormWrapper onSubmit={(e) => this.handleSubmit(e)}>
                 <Title>Get in touch.</Title>
 
                 <Input type="hidden" name="form-name" value="inquiries" />
@@ -80,6 +80,18 @@ class Form extends React.Component {
         })
         .then(() => alert("Success!"))
         .catch(error => alert(error));
+    }
+
+    handleSubmit = e => {
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact", ...this.state })
+      })
+        .then(() => alert("Success!"))
+        .catch(error => alert(error));
+
+      e.preventDefault();
     }
 }
 
