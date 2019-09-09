@@ -27,7 +27,7 @@ class Form extends React.Component {
 
     render() {
         return (
-            <FormWrapper onSubmit={(e) => this.handleSubmit(e)} netlify>
+            <FormWrapper onSubmit={(e) => this.handleSubmit(e)} netlify="true">
                 <Title>Get in touch.</Title>
 
                 <Input type="hidden" name="inquiries" value="inquiries" />
