@@ -27,10 +27,10 @@ class Form extends React.Component {
 
     render() {
         return (
-            <FormWrapper onSubmit={(e) => this.handleSubmit(e)}>
+            <FormWrapper onSubmit={(e) => this.handleSubmit(e)} netlify>
                 <Title>Get in touch.</Title>
 
-                <Input type="hidden" name="form-name" value="inquiries" />
+                <Input type="hidden" name="inquiries" value="inquiries" />
 
                 <Input
                     name="name"
@@ -80,6 +80,7 @@ class Form extends React.Component {
         })
         .then(() => alert("Success!"))
         .catch(error => alert(error));
+        e.preventDefault();
     }
 
     handleSubmit = e => {
