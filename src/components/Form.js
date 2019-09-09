@@ -30,6 +30,8 @@ class Form extends React.Component {
             <FormWrapper onSubmit={(e) => this.submitInquiry(e)} name="inquiries" netlify="true" netlify-honeypot="bot-field">
                 <Title>Get in touch.</Title>
 
+                <Input name="inquiries" type="hidden" />
+
                 <Input
                     name="name"
                     type="text"
@@ -69,20 +71,16 @@ class Form extends React.Component {
         this.setState({message: e.target.value});
     }
 
-    async submitInquiry(e) {
-        try {
-            await axios.post('/', encode({
-                'form-name': 'inquiries', ...this.state }), {
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            })
-            // this.setState({ submitted: true })
-        } catch (err) {
-            window.alert(
-                'There was a problem submitting your form! Try again or reload the page :)',
-            )
-            // this.setState({ submitted: true })
-        }
-        e.preventDefault();
+    submitInquiry(e) {
+        fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "inquiries", ...this.state })
+      })
+        .then(() => alert("Success!"))
+        .catch(error => alert(error));
+
+      e.preventDefault();
     }
 }
 
