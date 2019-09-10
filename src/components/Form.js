@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Mail from './resources/mail.js';
 
 const axios = require('axios');
 
@@ -27,7 +26,7 @@ class Form extends React.Component {
 
     render() {
         return (
-            <FormWrapper name="inquiries" netlify="true" netlify-honeypot="bot-field">
+            <FormWrapper name="inquiries" data-netlify="true" data-netlify-honeypot="bot-field">
                 <Title>Get in touch.</Title>
 
                 <Input name="form-name" value="inquiries" type="hidden" />
@@ -54,7 +53,7 @@ class Form extends React.Component {
                     placeholder="Message" />
 
 
-                <Submit type="submit">Submit</Submit>
+                <Submit type="button" onClick={(e) => this.submitInquiry(e)}>Submit</Submit>
             </FormWrapper>
         );
     }
@@ -71,12 +70,13 @@ class Form extends React.Component {
         this.setState({message: e.target.value});
     }
 
-    submitInquiry = async values => {
+    async submitInquiry(e) {
         try {
             await axios.post('/', encode({ 'form-name': 'inquiries', ...this.state}), {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             })
             // this.setState({ submitted: true })
+            e.preventDefault();
         } catch (error) {
             throw error;
             // this.setState({ submitted: true })
