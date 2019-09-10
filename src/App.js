@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.scss';
-import FormTest from './components/FormTest.js';
 import Grid from './components/Grid.js';
 import Form from './components/Form.js';
 import styled from 'styled-components';
@@ -23,8 +22,6 @@ function App() {
       <Grid />
 
       <Form />
-
-      <FormTest />
 
       <Footer>
         &copy; Brian Hamm 2019

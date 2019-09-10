@@ -71,13 +71,31 @@ class Form extends React.Component {
     }
 
     submitInquiry = e => {
-        fetch("/", {
+        fetch( window.location.href + "/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode({ "form-name": "inquiries", ...this.state })
+            body: this.state
         })
-        .then(() => alert("Success!"))
-        .catch(error => alert(error));
+        .then(response => {
+            console.log(response)
+            console.log(response.status)
+            if (response.status > 199 && response.status < 300) {
+                this.setState(prevState=>({
+                    submitResponse: 'success'
+                }))
+            } else {
+                this.setState(prevState=>({
+                    submitResponse: 'error'
+                }))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+            this.setState(prevState=>({
+                submitResponse: 'error'
+            }))
+        });
+        e.preventDefault();
     }
 }
 
