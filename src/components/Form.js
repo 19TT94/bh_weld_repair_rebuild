@@ -71,7 +71,7 @@ class Form extends React.Component {
     }
 
     submitInquiry = e => {
-        fetch( window.location.href + "/", {
+        fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: this.state
