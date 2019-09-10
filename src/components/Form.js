@@ -71,16 +71,16 @@ class Form extends React.Component {
         this.setState({message: e.target.value});
     }
 
-    submitInquiry(e) {
-        fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "inquiries", ...this.state })
-      })
-        .then(() => alert("Success!"))
-        .catch(error => alert(error));
-
-      e.preventDefault();
+    async submitInquiry(e) {
+        try {
+            await axios.post('/', encode({ 'form-name': 'contact', ...this.state}), {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            })
+            // this.setState({ submitted: true })
+        } catch (err) {
+            throw err;
+            // this.setState({ submitted: true })
+        }
     }
 }
 
