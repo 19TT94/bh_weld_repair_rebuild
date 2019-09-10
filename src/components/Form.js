@@ -27,7 +27,7 @@ class Form extends React.Component {
 
     render() {
         return (
-            <FormWrapper onSubmit={(e) => this.submitInquiry(e)} name="inquiries" netlify="true" netlify-honeypot="bot-field">
+            <FormWrapper name="inquiries" netlify="true" netlify-honeypot="bot-field">
                 <Title>Get in touch.</Title>
 
                 <Input name="form-name" value="inquiries" type="hidden" />
@@ -54,7 +54,7 @@ class Form extends React.Component {
                     placeholder="Message" />
 
 
-                <Submit type="submit">Submit</Submit>
+                <Submit type="button" onClick={(e) => this.submitInquiry(e)}>Submit</Submit>
             </FormWrapper>
         );
     }
@@ -73,7 +73,7 @@ class Form extends React.Component {
 
     async submitInquiry(e) {
         try {
-            await axios.post('/', encode({ 'form-name': 'contact', ...this.state}), {
+            await axios.post('/', encode({ 'form-name': 'inquiries', ...this.state}), {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             })
             // this.setState({ submitted: true })
