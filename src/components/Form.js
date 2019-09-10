@@ -54,7 +54,7 @@ class Form extends React.Component {
                     placeholder="Message" />
 
 
-                <Submit type="button" onClick={(e) => this.submitInquiry(e)}>Submit</Submit>
+                <Submit type="submit">Submit</Submit>
             </FormWrapper>
         );
     }
@@ -71,17 +71,16 @@ class Form extends React.Component {
         this.setState({message: e.target.value});
     }
 
-    async submitInquiry(e) {
+    submitInquiry = async values => {
         try {
             await axios.post('/', encode({ 'form-name': 'inquiries', ...this.state}), {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             })
             // this.setState({ submitted: true })
-        } catch (err) {
-            throw err;
+        } catch (error) {
+            throw error;
             // this.setState({ submitted: true })
         }
-        e.preventDefault();
     }
 }
 
@@ -103,6 +102,7 @@ const Title = styled.h1`
 
 const Input = styled.input`
     width: 90%;
+    font-size: 14px;
     min-height: 25px;
     margin: 10px 10px 5px;
 
@@ -113,6 +113,7 @@ const Input = styled.input`
 
 const Blob = styled.textarea`
     width: 90%;
+    font-size: 14px;
     min-height: 50px;
     margin: 10px 10px 5px;
 
@@ -123,10 +124,12 @@ const Blob = styled.textarea`
 
 const Submit = styled.button`
     color: #fff;
+    font-size: 14px;
+    max-width: 150px;
     padding: 5px 10px;
     margin: 40px 10px;
     border: 1px solid #fff;
-    max-width: 100px;
+
     transition: all ease 0.5s;
 
     &:hover {

@@ -119,9 +119,11 @@ const Image = styled.div`
 
 const Button = styled.a`
     color: #000;
+    font-size: 14px;
+    min-width: 125px;
+    padding: 5px 15px;
+    text-align: center;
     margin: 40px auto 10px;
-    padding: 5px 10px;
-    max-width: 150px;
     border: 1px solid #000;
     transition: all ease 0.5s;
 
