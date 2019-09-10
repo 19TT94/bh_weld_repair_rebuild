@@ -30,7 +30,7 @@ class Form extends React.Component {
             <FormWrapper onSubmit={(e) => this.submitInquiry(e)} name="inquiries" netlify="true" netlify-honeypot="bot-field">
                 <Title>Get in touch.</Title>
 
-                <Input name="inquiries" type="hidden" />
+                <Input name="form-name" value="inquiries" type="hidden" />
 
                 <Input
                     name="name"
