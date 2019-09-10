@@ -77,6 +77,7 @@ class Form extends React.Component {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             })
             // this.setState({ submitted: true })
+            e.preventDefault();
         } catch (err) {
             throw err;
             // this.setState({ submitted: true })
