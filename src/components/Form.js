@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const axios = require('axios');
-
 const encode = (data) => {
     return Object.keys(data)
         .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -71,29 +69,20 @@ class Form extends React.Component {
     }
 
     submitInquiry = e => {
+        console.log(this.state);
         fetch("/", {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: this.state
+            // headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode(this.state)
         })
         .then(response => {
             console.log(response)
             console.log(response.status)
-            if (response.status > 199 && response.status < 300) {
-                this.setState(prevState=>({
-                    submitResponse: 'success'
-                }))
-            } else {
-                this.setState(prevState=>({
-                    submitResponse: 'error'
-                }))
-            }
+            console.log("success");
         })
         .catch(error => {
             console.log(error)
-            this.setState(prevState=>({
-                submitResponse: 'error'
-            }))
+            throw error;
         });
         e.preventDefault();
     }
