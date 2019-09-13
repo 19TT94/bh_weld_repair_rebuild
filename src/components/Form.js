@@ -11,9 +11,10 @@ class Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            success: false,
             name: '',
             email: '',
-            messasge: ''
+            message: ''
         };
         // Data Binding
         this.handleChange = this.handleChange.bind(this);
@@ -21,7 +22,11 @@ class Form extends React.Component {
     }
 
     render() {
-        return (
+        return this.state.success ? (
+            <FormWrapper>
+                <Success>Thanks for your inquiry, you'll be hearing from me shortly!</Success>
+            </FormWrapper>
+        ) : (
             <FormWrapper
                 name="inquiries"
                 method="POST"
@@ -69,7 +74,7 @@ class Form extends React.Component {
             body: encode({ 'form-name': 'inquiries', ...this.state }),
         })
         .then(response => {
-            console.log(response)
+            this.setState({success: true})
         })
         .catch(error => {
             throw error;
@@ -79,10 +84,12 @@ class Form extends React.Component {
 }
 
 const FormWrapper = styled.form`
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    min-height: 300px;
     text-align: center;
     background: #553739;
     box-shadow: 0 0 15px rgba(0,0,0,0.5);
@@ -130,6 +137,16 @@ const Submit = styled.button`
         background: #fff;
         color: #000;
     }
+`;
+
+const Success = styled.p`
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
 `;
 
 export default Form;
