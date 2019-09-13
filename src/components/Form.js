@@ -24,10 +24,15 @@ class Form extends React.Component {
 
     render() {
         return (
-            <FormWrapper name="inquiries" onSubmit={this.submitInquiry} data-netlify="true" data-netlify-honeypot="bot-field">
+            <FormWrapper
+                name="inquiries"
+                method="POST"
+                onSubmit={this.submitInquiry}
+                data-netlify="true"
+                data-netlify-honeypot="bot-field">
                 <Title>Get in touch.</Title>
 
-                <Input name="form-name" value="inquiries" type="hidden" />
+                <Input type="hidden" id="bot-field" name="bot-field" />
 
                 <Input
                     name="name"
@@ -70,10 +75,12 @@ class Form extends React.Component {
 
     submitInquiry = e => {
         console.log(this.state);
+        e.preventDefault();
+
         fetch("/", {
             method: "POST",
-            // headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode(this.state)
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({ 'form-name': 'inquiries', ...this.state }),
         })
         .then(response => {
             console.log(response)
@@ -84,7 +91,6 @@ class Form extends React.Component {
             console.log(error)
             throw error;
         });
-        e.preventDefault();
     }
 }
 
