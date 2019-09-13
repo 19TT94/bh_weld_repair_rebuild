@@ -15,31 +15,48 @@ class Form extends React.Component {
             email: '',
             messasge: ''
         };
+        // Data Binding
+        this.handleChange = this.handleChange.bind(this);
+        this.submitInquiry = this.submitInquiry.bind(this);
     }
 
     render() {
-        const { name, email, message } = this.state;
-      return (
-        <form onSubmit={this.handleSubmit}>
-          <p>
-            <label>
-              Your Name: <input type="text" name="name" value={name} onChange={this.handleChange} />
-            </label>
-          </p>
-          <p>
-            <label>
-              Your Email: <input type="email" name="email" value={email} onChange={this.handleChange} />
-            </label>
-          </p>
-          <p>
-            <label>
-              Message: <textarea name="message" value={message} onChange={this.handleChange} />
-            </label>
-          </p>
-          <p>
-            <button type="submit">Send</button>
-          </p>
-        </form>
+        return (
+            <FormWrapper
+                name="inquiries"
+                method="POST"
+                onSubmit={this.submitInquiry}
+                data-netlify="true"
+                data-netlify-honeypot="bot-field">
+                <Title>Get in touch.</Title>
+
+                <Input type="hidden" id="bot-field" name="bot-field" />
+                <Input type="hidden" name="form-name" value="inquires" />
+
+                <Input
+                    name="name"
+                    type="text"
+                    value={this.state.name}
+                    onChange={this.handleChange}
+                    placeholder="Name" />
+
+                <Input
+                    name="email"
+                    type="email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                    placeholder="Email" />
+
+                <Blob
+                    name="message"
+                    type="text"
+                    value={this.state.message}
+                    onChange={this.handleChange}
+                    placeholder="Message" />
+
+
+                <Submit type="submit">Submit</Submit>
+            </FormWrapper>
         );
     }
 
