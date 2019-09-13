@@ -15,68 +15,37 @@ class Form extends React.Component {
             email: '',
             messasge: ''
         };
-        // Data Binding
-        this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handleMessageChange = this.handleMessageChange.bind(this);
-        this.submitInquiry = this.submitInquiry.bind(this);
     }
 
     render() {
-        return (
-            <FormWrapper
-                name="inquiries"
-                method="POST"
-                onSubmit={this.submitInquiry}
-                data-netlify="true"
-                data-netlify-honeypot="bot-field">
-                <Title>Get in touch.</Title>
-
-                <Input type="hidden" id="bot-field" name="bot-field" />
-
-                <Input
-                    name="name"
-                    type="text"
-                    value={this.state.name}
-                    onChange={(e) => this.handleNameChange(e)}
-                    placeholder="Name" />
-
-                <Input
-                    name="email"
-                    type="email"
-                    value={this.state.email}
-                    onChange={(e) => this.handleEmailChange(e)}
-                    placeholder="Email" />
-
-                <Blob
-                    name="message"
-                    type="text"
-                    value={this.state.message}
-                    onChange={(e) => this.handleMessageChange(e)}
-                    placeholder="Message" />
-
-
-                <Submit type="submit">Submit</Submit>
-            </FormWrapper>
+        const { name, email, message } = this.state;
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <p>
+            <label>
+              Your Name: <input type="text" name="name" value={name} onChange={this.handleChange} />
+            </label>
+          </p>
+          <p>
+            <label>
+              Your Email: <input type="email" name="email" value={email} onChange={this.handleChange} />
+            </label>
+          </p>
+          <p>
+            <label>
+              Message: <textarea name="message" value={message} onChange={this.handleChange} />
+            </label>
+          </p>
+          <p>
+            <button type="submit">Send</button>
+          </p>
+        </form>
         );
     }
 
-    handleNameChange(e) {
-        this.setState({name: e.target.value});
-    }
-
-    handleEmailChange(e) {
-        this.setState({email: e.target.value});
-    }
-
-    handleMessageChange(e) {
-        this.setState({message: e.target.value});
-    }
+    handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
     submitInquiry = e => {
-        console.log(this.state);
-        e.preventDefault();
-
         fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -84,13 +53,11 @@ class Form extends React.Component {
         })
         .then(response => {
             console.log(response)
-            console.log(response.status)
-            console.log("success");
         })
         .catch(error => {
-            console.log(error)
             throw error;
         });
+        e.preventDefault();
     }
 }
 
