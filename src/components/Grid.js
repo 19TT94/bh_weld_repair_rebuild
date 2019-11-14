@@ -103,7 +103,7 @@ const Image = styled.div`
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
 
     @media screen and (min-width: 767px) {
-        height: 200px;
+        height: 300px;
     }
 
     &:after {

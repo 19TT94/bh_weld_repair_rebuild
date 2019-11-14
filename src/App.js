@@ -7,6 +7,7 @@ import styled from 'styled-components';
 function App() {
   return (
     <AppWrapper>
+      <Phone href="tel:8052866147">805.286.6147</Phone>
       <header className="App-header">
         <Image src={require('./assets/images/logo.png')} />
         <Banner />
@@ -14,7 +15,7 @@ function App() {
         <Bar>
             <Header>S.L.O. Based Building Solutions <span>by Brian Hamm</span></Header>
             <Description>
-              Lorem ipsum dolor amet tote bag banjo vegan yuccie iPhone +1 vinyl sriracha. Taxidermy mlkshk whatever fashion axe deep v meditation plaid. Beard trust fund paleo ugh irony. Kickstarter slow-carb +1, tilde cold-pressed post-ironic drinking vinegar iceland.
+              Based in beautiful San Luis Obispo California, I provide all your custom welding, fabrication, and reparation services. Whether you need a new gate for your trailer or a fully restored custom motorcycle, I am here for you. Looking forward to your business!
             </Description>
         </Bar>
       </header>
@@ -30,6 +31,14 @@ function App() {
     </AppWrapper>
   );
 }
+
+const Phone = styled.a`
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    color: #553739;
+`;
 
 const AppWrapper = styled.div`
     min-height: 100vh;
