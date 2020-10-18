@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.scss';
-import Grid from './components/Grid.js';
 import Form from './components/Form.js';
 import styled from 'styled-components';
 
