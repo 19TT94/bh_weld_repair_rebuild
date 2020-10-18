@@ -20,8 +20,6 @@ function App() {
         </Bar>
       </header>
 
-      <Grid />
-
       <Form />
 
       <Footer>
